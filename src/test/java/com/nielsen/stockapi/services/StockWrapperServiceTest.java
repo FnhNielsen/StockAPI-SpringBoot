@@ -31,6 +31,8 @@ class StockWrapperServiceTest
 
         final BigDecimal changeIn200 = stockService.getChange200MeanPercent(stock);
         System.out.println(changeIn200);
+
+
     }
     @Test
     void multipleStocks() throws IOException, InterruptedException
