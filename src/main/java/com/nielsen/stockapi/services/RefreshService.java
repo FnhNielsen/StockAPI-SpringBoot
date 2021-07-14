@@ -2,7 +2,6 @@ package com.nielsen.stockapi.services;
 
 import com.nielsen.stockapi.models.StockWrapper;
 import org.springframework.stereotype.Service;
-import yahoofinance.YahooFinance;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -40,12 +39,12 @@ public class RefreshService
     private void setRefreshQuaterHour()
     {
         scheduler.scheduleAtFixedRate(() ->
-                refreshStocks.forEach((stockWrapper, value) -> {
-            if (stockWrapper.getLastRefresh().isBefore(LocalDateTime.now().minus(refreshPeriod)))
+                refreshStocks.forEach((stock, value) -> {
+            if (stock.getLastRefresh().isBefore(LocalDateTime.now().minus(refreshPeriod)))
             {
-                System.out.println(stockWrapper.getStock().getSymbol());
-                refreshStocks.remove(stockWrapper);
-                refreshStocks.put(stockWrapper.withLastRefresh(LocalDateTime.now()), true);
+                System.out.println(stock.getStock().getSymbol());
+                refreshStocks.remove(stock);
+                refreshStocks.put(stock.withLastRefresh(LocalDateTime.now()), true);
             }
         }),0,15,SECONDS );
     }

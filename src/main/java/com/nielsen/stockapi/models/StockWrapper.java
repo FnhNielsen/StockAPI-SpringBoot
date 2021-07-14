@@ -11,17 +11,17 @@ import java.time.LocalDateTime;
 @With
 public class StockWrapper
 {
-    private final Stock stock;
+    private final yahoofinance.Stock stock;
     private final LocalDateTime lastRefresh;
 
 
-    public StockWrapper(final Stock stock)
+    public StockWrapper(final yahoofinance.Stock stock)
     {
         this.stock = stock;
         lastRefresh = LocalDateTime.now();
     }
 
-    public Stock getStock()
+    public yahoofinance.Stock getStock()
     {
         return stock;
     }
